@@ -78,13 +78,13 @@ class HelloWorldForm extends FormBase
 
   public function hello_world_validate($form, &$form_state) {
   // YOUR CUSTOM VALIDATION CODE GOES HERE
-    $value = $form_state->('email');
-    if($value == !\Drupal::service('email.validator')->isValid($value))){
-     $form_state->setErrorByname('email',t('The email address %mail is not valid.',array('%mail'=>$value)));
+    //$value = $form_state->('email');
+    //if($value == !\Drupal::service('email.validator')->isValid($value))){
+     //$form_state->setErrorByname('email',t('The email address %mail is not valid.',array('%mail'=>$value)));
 
 
-   //if (!valid_email_address($email)) {
-     // form_set_error('submitted][email_address', t('The email address appears to be invalid.'));
+   if (!valid_email_address($email)) {
+   form_set_error('submitted][email_address', t('The email address appears to be invalid.'));
    }
  }
 
@@ -100,7 +100,8 @@ $field=$form_state->getValues();
    $dob=$field['dob'];
    $address=$field['address'];
    $number=$field['number'];
-
+print_r($field);
+die("test1");
 
   if (isset($_GET['num'])) {
 

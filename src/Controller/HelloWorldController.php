@@ -31,7 +31,7 @@ class HelloWorldController extends ControllerBase {
     //create table header
     $header_table = array(
       'id'=>    t('SrNo'),
-      'image' => t('Upload')
+      'image' => t('Upload'),
       'name' => t('Name'),
       'email' => t('Email'),
       'password' => t('Password'),
