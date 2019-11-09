@@ -1,0 +1,39 @@
+hello_world.hello:
+  path: '/hello/world'
+  defaults:
+    _title: 'Hello World'
+    _controller: '\Drupal\hello_world\Controller\HelloWorldController::hello'
+  requirements:
+    _permission: 'access content'
+
+hello_world.hello-form:
+  path: '/hello-form'
+  defaults:
+    _title: 'Hello Form'
+    _form: '\Drupal\hello_world\Form\HelloWorldForm'
+  requirements:
+    _permission: 'access content'
+
+hello_world.display_table_controller_display:
+  path: '/hello/table'
+  defaults:
+    _controller: '\Drupal\hello_world\Controller\HelloWorldController::display'
+    _title: 'display'
+  requirements:
+    _permission: 'access content'
+
+hello_world.delete:
+  path: '/hello/delete/{id}'
+  defaults:
+    _controller: '\Drupal\hello_world\Controller\HelloWorldController::delete'
+    _title: 'delete'
+  requirements:
+    _permission: 'access content'
+
+hello_world.content:
+  path: '/hello/template'
+  defaults:
+    _title: 'Hello Template'
+    _controller: '\Drupal\hello_world\Controller\HelloWorldController::content'
+  requirements:
+    _permission: 'access content'

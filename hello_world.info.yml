@@ -1,0 +1,5 @@
+name: Hello World
+type: module
+description: 'This is drupal 8 module hello World!'
+package: custom
+core: 8.x
