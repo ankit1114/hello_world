@@ -38,12 +38,13 @@ class HelloWorldController extends ControllerBase {
       'dob' => t('DOB'),
       'address' => t('Address'),
       'number' => t('Number'),
+      'gender' => t('Gender'),
       'delete' => t('Delete'),
       'edit' => t('Edit'),
       );
     //select records from table
     $query = \Drupal::database()->select('hello_form', 'm');
-    $query->fields('m', ['id','image','name','email','password','dob','address','number']);
+    $query->fields('m', ['id','image','name','email','password','dob','address','number','gender']);
     $pager = $query->extend('Drupal\Core\Database\Query\PagerSelectExtender')->limit(10);
     $results = $pager->execute()->fetchAll();
 
@@ -61,6 +62,7 @@ class HelloWorldController extends ControllerBase {
         'dob' => $data->dob,
         'address' => $data->address,
         'number' => $data->number,
+        'gender' => $data->gender,
          \Drupal::l('Delete', $delete),
          \Drupal::l('Edit', $edit),
       );

@@ -3,6 +3,7 @@
 namespace Drupal\hello_world\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormInterface;
 
 /**
  * Provides a 'Hello' Block.
@@ -19,9 +20,14 @@ class HelloBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return [
-      '#markup' => $this->t('Hello, World!'),
+    /*return [
+      '#type' => 'markup',
+      '#markup' => 'Hello World',
     ];
+*/
+    $form = \Drupal::formBuilder()->getForm('Drupal\hello_world\Form\HelloWorldForm');
+    return $form;
+
   }
 
 }
