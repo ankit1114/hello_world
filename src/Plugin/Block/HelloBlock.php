@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormInterface;
  *
  * @Block(
  *   id = "hello_block",
- *   admin_label = @Translation("Hello block"),
+ *   admin_label = @Translation("Hello Block"),
  *   category = @Translation("Hello World"),
  * )
  */

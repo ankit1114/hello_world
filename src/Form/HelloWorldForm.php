@@ -73,7 +73,7 @@ class HelloWorldForm extends FormBase
     );
 
     $form['number'] = array(
-      '#type' => 'number',
+      '#type' => 'tel',
       '#title' => t('Contact number:'),
       '#required' => TRUE,
       '#default_value' => (isset($record['number']) && $_GET['num']) ? $record['number']:'',
@@ -102,14 +102,20 @@ class HelloWorldForm extends FormBase
         ->t('Send me a copy'),
     );
 
-    ];
-    $form['submit'] = [
+    /*$form['submit'] = [
       '#type' => 'submit',
       '#value' => 'save',
       //'#value' => t('Submit'),
+      //'#ajax' => [
+      //'callback' => '::setMessage',
+    ];*/
+    $form['actions']['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('save'),
       '#ajax' => [
-      'callback' => '::setMessage',
-    ];
+        'callback' => '::setMessage',
+        ],
+      ];
 
     $form['message'] = [
       '#type' => 'markup',
@@ -125,7 +131,7 @@ class HelloWorldForm extends FormBase
     $response->addCommand(
       new HtmlCommand(
         '.result_message',
-        '<div class="my_message">Submitted title is ' . $form_state->getValue('title') . '</div>')
+        '<div class="my_message">Submitted Successfully  ' . $form_state->getValue('name') . '</div>')
   );
     return $response;
     }
@@ -151,6 +157,20 @@ class HelloWorldForm extends FormBase
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
+    \Drupal::messenger()->addMessage($this->t('Form Submitted Successfully'), 'status', TRUE);
+
+    $message = [
+      '#theme' => 'status_messages',
+      '#message_list' => drupal_get_messages(),
+    ];
+
+    $messages = \Drupal::service('renderer')->render($message);
+    echo $messages;
+    $response = new AjaxResponse();
+    $response->addCommand(new HtmlCommand('#result-message', $messages));
+    return $response;
+
     $field = $form_state->getValues();
     $image = !empty($field['image']) ? $field['image'] : '';
     $name = isset($field['name']) ? $field['name'] : '';
@@ -191,5 +211,6 @@ class HelloWorldForm extends FormBase
       $response = new RedirectResponse(\Drupal::url('hello_world.display_table_controller_display'));
       $response->send();
    }
+
   }
 }

@@ -7,3 +7,22 @@ function hello_world_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_views_data().
+ */
+function custom_module_views_data() {
+  $data['views']['table']['group'] = t('Custom Global');
+  $data['views']['table']['join'] = [
+    // #global is a special flag which allows a table to appear all the time.
+    '#global' => [],
+  ];
+  $data['views']['phase_views_field'] = [
+    'title' => t('Phase'),
+    'help' => t('The Phase which the current project is in.'),
+    'field' => [
+      'id' => 'phase_views_field',
+    ],
+  ];
+  return $data;
+}

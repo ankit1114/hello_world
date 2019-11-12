@@ -1,0 +1,6 @@
+hello_world.demo:
+   title: 'Hello'
+   description: 'Hello page'
+   parent: main
+   menu_name: main
+   route_name: hello_world.hello
